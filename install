@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rm -rf compilers/*
+
+mkdir -p compilers
+
+for tar in cross_compilers/*; do
+    echo "Extracting: $tar..."
+    tar -xjf  $tar -C compilers/
+done
+
+for dir in compilers/*; do
+    cd compilers/$dir; export PATH=$PWD/bin:$PATH; cd ../..
+done
+
+echo -e "\x1b[32mSuccessfully installed all cross-compilers...! \x1b[39m"
